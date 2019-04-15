@@ -16,7 +16,6 @@ namespace rimrock_api.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-
 			modelBuilder.Entity<Region>().HasData(
 				new Region
 				{
