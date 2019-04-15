@@ -16,5 +16,11 @@ namespace rimrock_api.Controllers
         {
             return Ok("HI ANDREW");
         }
+
+        // [C]RUD
+        // C[R]UD
+        // CR[U]D
+        // CRU[D]
+
     }
 }
