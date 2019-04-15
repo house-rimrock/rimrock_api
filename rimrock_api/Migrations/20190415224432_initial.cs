@@ -8,19 +8,6 @@ namespace rimrock_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Regions",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Regions", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -33,12 +20,19 @@ namespace rimrock_api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Locations_Regions_RegionID",
-                        column: x => x.RegionID,
-                        principalTable: "Regions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Regions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Regions", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,18 +48,7 @@ namespace rimrock_api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Retailers", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Retailers_Regions_RegionID",
-                        column: x => x.RegionID,
-                        principalTable: "Regions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "ID", "Name" },
-                values: new object[] { 1, "Greater Seattle" });
 
             migrationBuilder.InsertData(
                 table: "Locations",
@@ -80,6 +63,11 @@ namespace rimrock_api.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "ID", "Name" },
+                values: new object[] { 1, "Greater Seattle" });
+
+            migrationBuilder.InsertData(
                 table: "Retailers",
                 columns: new[] { "ID", "Name", "RegionID", "Specialty" },
                 values: new object[,]
@@ -88,16 +76,6 @@ namespace rimrock_api.Migrations
                     { 2, "Yeager's", 1, "Skiing" },
                     { 3, "Backcountry Essentials", 1, "Climbing" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Locations_RegionID",
-                table: "Locations",
-                column: "RegionID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Retailers_RegionID",
-                table: "Retailers",
-                column: "RegionID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -106,10 +84,10 @@ namespace rimrock_api.Migrations
                 name: "Locations");
 
             migrationBuilder.DropTable(
-                name: "Retailers");
+                name: "Regions");
 
             migrationBuilder.DropTable(
-                name: "Regions");
+                name: "Retailers");
         }
     }
 }
