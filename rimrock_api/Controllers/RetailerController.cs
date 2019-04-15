@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using rimrock_api.Models;
+using rimrock_api.Data;
 
 namespace rimrock_api.Controllers
 {
@@ -11,16 +14,30 @@ namespace rimrock_api.Controllers
     [ApiController]
     public class RetailerController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult Get()
-        {
-            return Ok("HI ANDREW");
-        }
 
-        // [C]RUD
-        // C[R]UD
-        // CR[U]D
-        // CRU[D]
+		private readonly RimRockApiDbContext _context;
 
+		public RetailerController(RimRockApiDbContext context)
+		{
+			_context = context;
+		}
+
+		[HttpGet("{id}")]
+        public async Task<ActionResult<Retailer>> Get(int id)
+		{
+			Retailer retailer = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
+			if (retailer == null)
+			{
+				return NotFound();
+			}
+			return Ok(retailer);
+		}
+		
+        //public async Task<Retailer> Get(int? id)
+        //{
+        //    var retailers = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
+
+        //    return Ok(retailers);
+        //}
     }
 }

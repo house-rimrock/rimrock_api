@@ -12,7 +12,6 @@ namespace rimrock_api.Data
     {
         public RimRockApiDbContext(DbContextOptions<RimRockApiDbContext> options) : base(options)
         {
-                
         }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
