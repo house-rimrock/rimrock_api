@@ -32,8 +32,6 @@ namespace rimrock_api.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RegionID");
-
                     b.ToTable("Locations");
 
                     b.HasData(
@@ -108,8 +106,6 @@ namespace rimrock_api.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RegionID");
-
                     b.ToTable("Retailers");
 
                     b.HasData(
@@ -134,22 +130,6 @@ namespace rimrock_api.Migrations
                             RegionID = 1,
                             Specialty = "Climbing"
                         });
-                });
-
-            modelBuilder.Entity("rimrock_api.Models.Location", b =>
-                {
-                    b.HasOne("rimrock_api.Models.Region")
-                        .WithMany("RegionLocations")
-                        .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("rimrock_api.Models.Retailer", b =>
-                {
-                    b.HasOne("rimrock_api.Models.Region")
-                        .WithMany("RegionRetailers")
-                        .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
