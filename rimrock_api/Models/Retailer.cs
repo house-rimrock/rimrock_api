@@ -11,8 +11,8 @@ namespace rimrock_api.Models
         public string Name { get; set; }
         public int RegionID { get; set; }
         public string Specialty { get; set; }
+
+        // Nav properties
+        public Region Region { get; set; }
     }
 }
-
-
-
