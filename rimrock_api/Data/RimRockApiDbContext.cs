@@ -12,12 +12,10 @@ namespace rimrock_api.Data
     {
         public RimRockApiDbContext(DbContextOptions<RimRockApiDbContext> options) : base(options)
         {
-                
         }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-
 			modelBuilder.Entity<Region>().HasData(
 				new Region
 				{

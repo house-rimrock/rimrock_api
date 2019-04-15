@@ -35,7 +35,7 @@ namespace rimrock_api
 
             string connectionString = Environment.IsDevelopment()
                                             ? Configuration["ConnectionStrings:DefaultConnection"]
-                                            : Configuration["ConnectionStrings:DefaultConnection"];
+                                            : Configuration["ConnectionStrings:ProductionConnection"];
 
 
 
