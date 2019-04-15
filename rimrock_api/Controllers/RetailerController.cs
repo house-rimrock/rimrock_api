@@ -22,21 +22,21 @@ namespace rimrock_api.Controllers
 			_context = context;
 		}
 
-		[HttpGet("{id}")]
-        public async Task<ActionResult<Retailer>> Get(int id)
-		{
-			Retailer retailer = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
-			if (retailer == null)
-			{
-				return NotFound();
-			}
-			return Ok(retailer);
-		}
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Retailer>>> Get()
+        {
+            return await _context.Retailers.ToListAsync();
+        }
 
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Retailer>>> Get()
-		{
-			return await _context.Retailers.ToListAsync();
-		}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Retailer>> Get(int id)
+        {
+            Retailer retailer = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
+            if (retailer == null)
+            {
+                return NotFound();
+            }
+            return Ok(retailer);
+        }
     }
 }

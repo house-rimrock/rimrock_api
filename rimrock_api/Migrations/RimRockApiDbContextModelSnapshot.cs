@@ -14,7 +14,7 @@ namespace rimrock_api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -138,7 +138,7 @@ namespace rimrock_api.Migrations
 
             modelBuilder.Entity("rimrock_api.Models.Location", b =>
                 {
-                    b.HasOne("rimrock_api.Models.Region", "Region")
+                    b.HasOne("rimrock_api.Models.Region")
                         .WithMany("RegionLocations")
                         .HasForeignKey("RegionID")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -146,7 +146,7 @@ namespace rimrock_api.Migrations
 
             modelBuilder.Entity("rimrock_api.Models.Retailer", b =>
                 {
-                    b.HasOne("rimrock_api.Models.Region", "Region")
+                    b.HasOne("rimrock_api.Models.Region")
                         .WithMany("RegionRetailers")
                         .HasForeignKey("RegionID")
                         .OnDelete(DeleteBehavior.Cascade);
