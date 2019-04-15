@@ -32,12 +32,11 @@ namespace rimrock_api.Controllers
 			}
 			return Ok(retailer);
 		}
-		
-        //public async Task<Retailer> Get(int? id)
-        //{
-        //    var retailers = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
 
-        //    return Ok(retailers);
-        //}
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<Retailer>>> Get()
+		{
+			return await _context.Retailers.ToListAsync();
+		}
     }
 }
