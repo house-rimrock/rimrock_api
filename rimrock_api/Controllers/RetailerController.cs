@@ -24,9 +24,9 @@ namespace rimrock_api.Controllers
 		}
 
         [HttpGet]
-        public async Task<IActionResult> GetRetailers()
+        public async Task<IActionResult> Get()
         {
-            List<Retailer> retailers = await _retailers.Get();
+            List<Retailer> retailers = await _retailers.GetRegions();
             return Ok(retailers);
         }
 
@@ -38,7 +38,7 @@ namespace rimrock_api.Controllers
                 return NotFound();
             }
 
-            var retailer = await _retailers.Get(id);
+            var retailer = await _retailers.GetRegion(id);
 
             if (retailer == null)
             {

@@ -19,12 +19,12 @@ namespace rimrock_api.Models.Services
             _context = context;
 		}
 
-		public async Task<List<Region>> Get()
+		public async Task<List<Region>> GetRegions()
 		{
             return await _context.Regions.ToListAsync();
         }
 
-		public async Task<Region> Get(int id)
+		public async Task<Region> GetRegion(int id)
 		{
             return await _context.Regions.FirstOrDefaultAsync(r => r.ID == id);
         }

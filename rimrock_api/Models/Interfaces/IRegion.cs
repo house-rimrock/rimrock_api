@@ -9,8 +9,8 @@ namespace rimrock_api.Models.Interfaces
 
 	public interface IRegion
 	{
-        Task<List<Region>> Get();
+        Task<List<Region>> GetRegions();
 
-        Task<Region> Get(int id);
+        Task<Region> GetRegion(int id);
     }
 }

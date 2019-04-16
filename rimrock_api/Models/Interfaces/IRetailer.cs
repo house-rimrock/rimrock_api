@@ -8,8 +8,8 @@ namespace rimrock_api.Models.Interfaces
 {
 	public interface IRetailer
 	{
-		Task<List<Retailer>> Get();
+		Task<List<Retailer>> GetRetailers();
 
-		Task<Retailer> Get(int id);
+		Task<Retailer> GetRetailer(int id);
 	}
 }
