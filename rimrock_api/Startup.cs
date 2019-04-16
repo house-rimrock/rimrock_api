@@ -43,7 +43,7 @@ namespace rimrock_api
 
 			services.AddDbContext<RimRockApiDbContext>(options =>
 			options.UseSqlServer(connectionString));
-            services.AddScoped<IRetailer, RetailerService>();
+            //services.AddScoped<IRetailer, RetailerService>();
             services.AddScoped<ILocation, LocationService>();
             services.AddScoped<IRegion, RegionService>();
 		}

@@ -8,8 +8,8 @@ namespace rimrock_api.Models.Interfaces
 {
 	public interface ILocation
 	{
-		Task<List<Location>> Get();
+		Task<List<Location>> GetLocations();
 
-		Task<Location> Get(int id);
+		Task<Location> GetLocation(int id);
 	}
 }
