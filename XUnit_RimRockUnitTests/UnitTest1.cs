@@ -416,6 +416,38 @@ namespace XUnit_RimRockUnitTests
 		}
 
 		/// <summary>
+		/// Tests whether can get all Regions as list by calling RegionService's GetRegions() method
+		/// </summary>
+		[Fact]
+		public async void GetRegions_CanGetAllRegionsAsList()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllRegionsAsList").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Region region1 = new Region();
+				region1.ID = 1;
+				region1.Name = "Paris";
+
+				Region region2 = new Region();
+				region2.ID = 2;
+				region2.Name = "Bretagne";
+
+				// Act
+				RegionService regionService = new RegionService(context);
+				await context.Regions.AddAsync(region1);
+				await context.Regions.AddAsync(region2);
+				await context.SaveChangesAsync();
+
+				List<Region> list = await regionService.GetRegions();
+
+				// Assert
+				Assert.Equal(list[1], region2);
+			};
+		}
+
+		/// <summary>
 		/// Tests whether can get single Retailer by calling RetailerService's GetRetailer() method
 		/// </summary>
 		[Fact]
@@ -439,6 +471,38 @@ namespace XUnit_RimRockUnitTests
 
 				// Assert
 				Assert.Equal(result, retailer);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get all Retailers as list by calling RetailerService's GetRetailers() method
+		/// </summary>
+		[Fact]
+		public async void GetRetailers_CanGetAllRetailersAsList()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllRetailersAsList").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Retailer retailer1 = new Retailer();
+				retailer1.ID = 1;
+				retailer1.Name = "Second Ascents";
+
+				Retailer retailer2 = new Retailer();
+				retailer2.ID = 2;
+				retailer2.Name = "Play It Again Sports";
+
+				// Act
+				RetailerService retailerService = new RetailerService(context);
+				await context.Retailers.AddAsync(retailer1);
+				await context.Retailers.AddAsync(retailer2);
+				await context.SaveChangesAsync();
+
+				List<Retailer> list = await retailerService.GetRetailers();
+
+				// Assert
+				Assert.Equal(list[1], retailer2);
 			};
 		}
 
@@ -467,6 +531,40 @@ namespace XUnit_RimRockUnitTests
 
 				// Assert
 				Assert.Equal(result, location);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get all Locations as list by calling LocationService's GetLocations() method
+		/// </summary>
+		[Fact]
+		public async void GetLocations_CanGetAllLocationsAsList()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllLocationsAsList").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Location location1 = new Location();
+				location1.ID = 1;
+				location1.Name = "Mt. St. Helens";
+				location1.Cost = "$";
+
+				Location location2 = new Location();
+				location2.ID = 2;
+				location2.Name = "Mt. Baker";
+				location2.Cost = "$$";
+
+				// Act
+				LocationService locationService = new LocationService(context);
+				await context.Locations.AddAsync(location1);
+				await context.Locations.AddAsync(location2);
+				await context.SaveChangesAsync();
+
+				List<Location> list = await locationService.GetLocations();
+
+				// Assert
+				Assert.Equal(list[1], location2);
 			};
 		}
 	}
