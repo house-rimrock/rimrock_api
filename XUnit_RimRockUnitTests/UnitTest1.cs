@@ -3,6 +3,8 @@ using rimrock_api.Models;
 using rimrock_api.Data;
 using System.Linq;
 using Xunit;
+using System.Collections.Generic;
+using rimrock_api.Models.Services;
 
 namespace XUnit_RimRockUnitTests
 {
@@ -197,9 +199,10 @@ namespace XUnit_RimRockUnitTests
 			Assert.Equal(2, retailer.RegionID);
 		}
 
-		/////////////////////////////////
-		// Test GET methods using in-memory DB
-		/////////////////////////////////
+
+		/////////////////////////////////////////
+		// Test logic for GET methods setting objects into in-memory DB context
+		/////////////////////////////////////////
 
 		/// <summary>
 		/// Tests whether can get a Region object from context
@@ -224,6 +227,39 @@ namespace XUnit_RimRockUnitTests
 
 				// Assert
 				Assert.Equal(result, region);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get list of all Region objects from context
+		/// </summary>
+		[Fact]
+		public void CanGetAllRegions()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllRegions").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Region region1 = new Region();
+				region1.ID = 1;
+				region1.Name = "Paris";
+
+				context.Add(region1);
+				context.SaveChanges();
+
+				Region region2 = new Region();
+				region2.ID = 2;
+				region2.Name = "Bretagne";
+
+				context.Add(region2);
+				context.SaveChanges();
+
+				// Act
+				List<Region> list = context.Regions.ToList();
+
+				// Assert
+				Assert.Equal(list[1], region2);
 			};
 		}
 
@@ -255,6 +291,39 @@ namespace XUnit_RimRockUnitTests
 		}
 
 		/// <summary>
+		/// Tests whether can get list of all Retailer objects from context
+		/// </summary>
+		[Fact]
+		public void CanGetAllRetailers()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllRetailers").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Retailer retailer1 = new Retailer();
+				retailer1.ID = 1;
+				retailer1.Name = "Second Ascents";
+
+				context.Add(retailer1);
+				context.SaveChanges();
+
+				Retailer retailer2 = new Retailer();
+				retailer2.ID = 2;
+				retailer2.Name = "Play It Again Sports";
+
+				context.Add(retailer2);
+				context.SaveChanges();
+
+				// Act
+				List<Retailer> list = context.Retailers.ToList();
+
+				// Assert
+				Assert.Equal(list[1], retailer2);
+			};
+		}
+
+		/// <summary>
 		/// Tests whether can get a Location object from context
 		/// </summary>
 		[Fact]
@@ -275,6 +344,71 @@ namespace XUnit_RimRockUnitTests
 
 				// Act
 				var result = context.Locations.FirstOrDefault(loc => loc.Cost == location.Cost);
+
+				// Assert
+				Assert.Equal(result, location);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get list of all Location objects from context
+		/// </summary>
+		[Fact]
+		public void CanGetAllLocations()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetAllLocations").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Location location1 = new Location();
+				location1.ID = 1;
+				location1.Name = "Mt. Baker";
+
+				context.Add(location1);
+				context.SaveChanges();
+
+				Location location2 = new Location();
+				location2.ID = 2;
+				location2.Name = "Mt. St. Helens";
+
+				context.Add(location2);
+				context.SaveChanges();
+
+				// Act
+				List<Location> list = context.Locations.ToList();
+
+				// Assert
+				Assert.Equal(list[1], location2);
+			};
+		}
+
+
+		/////////////////////////////////////////
+		// Test GET methods using in-memory DB
+		/////////////////////////////////////////
+
+		[Fact]
+		public async void GetLocation_CanGetSingleLocation()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetSingleLocation").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Location location = new Location();
+				location.ID = 1;
+				location.Name = "Second Ascents";
+				location.Cost = "$$";
+
+				// Act
+				LocationService locationService = new LocationService(context);
+				await context.Locations.AddAsync(location);
+				await context.SaveChangesAsync();
+
+				Location result = await locationService.GetLocation(location.ID);
+
+				//var result = context.Locations.FirstOrDefault(loc => loc.Cost == location.Cost);
 
 				// Assert
 				Assert.Equal(result, location);
