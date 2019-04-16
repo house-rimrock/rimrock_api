@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using rimrock_api.Data;
+using rimrock_api.Models.Interfaces;
+using rimrock_api.Models.Services;
 
 namespace rimrock_api
 {
@@ -41,6 +43,9 @@ namespace rimrock_api
 
 			services.AddDbContext<RimRockApiDbContext>(options =>
 			options.UseSqlServer(connectionString));
+            services.AddScoped<IRetailer, RetailerService>();
+            services.AddScoped<ILocation, LocationService>();
+            services.AddScoped<IRegion, RegionService>();
 		}
 
 
