@@ -14,7 +14,7 @@ namespace rimrock_api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,8 +31,6 @@ namespace rimrock_api.Migrations
                     b.Property<int>("RegionID");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("RegionID");
 
                     b.ToTable("Locations");
 
@@ -108,8 +106,6 @@ namespace rimrock_api.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RegionID");
-
                     b.ToTable("Retailers");
 
                     b.HasData(
@@ -134,22 +130,6 @@ namespace rimrock_api.Migrations
                             RegionID = 1,
                             Specialty = "Climbing"
                         });
-                });
-
-            modelBuilder.Entity("rimrock_api.Models.Location", b =>
-                {
-                    b.HasOne("rimrock_api.Models.Region")
-                        .WithMany("RegionLocations")
-                        .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("rimrock_api.Models.Retailer", b =>
-                {
-                    b.HasOne("rimrock_api.Models.Region")
-                        .WithMany("RegionRetailers")
-                        .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
