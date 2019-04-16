@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using rimrock_api.Data;
 using rimrock_api.Models;
+using rimrock_api.Data;
+using rimrock_api.Models.Interfaces;
 
 namespace rimrock_api.Controllers
 {
@@ -15,28 +16,35 @@ namespace rimrock_api.Controllers
     public class RegionController : ControllerBase
     {
 
-		private readonly RimRockApiDbContext _context;
+        private readonly IRegion _regions;
 
-		public RegionController(RimRockApiDbContext context)
-		{
-			_context = context;
-		}
+        public RegionController(IRegion regions)
+        {
+            _regions = regions;
+        }
 
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Region>>> Get()
-		{
-			return await _context.Regions.ToListAsync();
-		}
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            List<Region> regions = await _regions.GetRegions();
+            return Ok(regions);
+        }
 
-		[HttpGet("{id}")]
-		public async Task<ActionResult<Region>> Get(int id)
-		{
-            Region region = await _context.Regions.FirstOrDefaultAsync(r => r.ID == id);
-			if (region == null)
-			{
-				return NotFound();
-			}
-			return Ok(region);
-		}
-	}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id < 1)
+            {
+                return NotFound();
+            }
+
+            var region = await _regions.GetRegion(id);
+
+            if (region == null)
+            {
+                return NotFound();
+            }
+            return Ok(region);
+        }
+    }
 }

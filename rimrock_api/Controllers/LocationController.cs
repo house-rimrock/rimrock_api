@@ -29,7 +29,7 @@ namespace rimrock_api.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<Retailer>> Get(int id)
+		public async Task<ActionResult<Location>> Get(int id)
 		{
 			Location location = await _context.Locations.FirstOrDefaultAsync(r => r.ID == id);
 			if (location == null)
