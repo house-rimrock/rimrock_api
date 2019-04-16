@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace rimrock_api.Models.Interfaces
 {
-	public interface IRetailer
+	public interface ILocation
 	{
-		Task<List<Retailer>> GetRetailers();
+		Task<List<Location>> GetLocations();
 
-		Task<Retailer> GetRetailer(int id);
+		Task<Location> GetLocation(int id);
 	}
 }

@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace rimrock_api.Models.Services
 {
-    public class RetailerService : IRetailer
+    public class LocationService : ILocation
     {
 
         private readonly RimRockApiDbContext _context;
 
-        public RetailerService(RimRockApiDbContext context)
+        public LocationService(RimRockApiDbContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Retailer>> GetRetailers()
+        public async Task<List<Location>> GetLocations()
         {
-            return await _context.Retailers.ToListAsync();
+            return await _context.Locations.ToListAsync();
         }
 
-        public async Task<Retailer> GetRetailer(int id)
+        public async Task<Location> GetLocation(int id)
         {
-            return await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
+            return await _context.Locations.FirstOrDefaultAsync(r => r.ID == id);
         }
     }
 }

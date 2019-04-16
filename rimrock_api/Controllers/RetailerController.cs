@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rimrock_api.Models;
 using rimrock_api.Data;
+using rimrock_api.Models.Interfaces;
 
 namespace rimrock_api.Controllers
 {
@@ -15,23 +16,30 @@ namespace rimrock_api.Controllers
     public class RetailerController : ControllerBase
     {
 
-		private readonly RimRockApiDbContext _context;
+		private readonly IRetailer _retailers;
 
-		public RetailerController(RimRockApiDbContext context)
+		public RetailerController(IRetailer retailers)
 		{
-			_context = context;
+            _retailers = retailers;
 		}
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Retailer>>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _context.Retailers.ToListAsync();
+            List<Retailer> retailers = await _retailers.GetRetailers();
+            return Ok(retailers);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Retailer>> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            Retailer retailer = await _context.Retailers.FirstOrDefaultAsync(r => r.ID == id);
+            if(id < 1)
+            {
+                return NotFound();
+            }
+
+            var retailer = await _retailers.GetRetailer(id);
+
             if (retailer == null)
             {
                 return NotFound();
