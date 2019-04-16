@@ -388,6 +388,63 @@ namespace XUnit_RimRockUnitTests
 		// Test GET methods using in-memory DB
 		/////////////////////////////////////////
 
+		/// <summary>
+		/// Tests whether can get single Region by calling RegionService's GetRegion() method
+		/// </summary>
+		[Fact]
+		public async void GetRegion_CanGetSingleRegion()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetSingleRegion").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Region region = new Region();
+				region.ID = 1;
+				region.Name = "The Palouse";
+
+				// Act
+				RegionService regionService = new RegionService(context);
+				await context.Regions.AddAsync(region);
+				await context.SaveChangesAsync();
+
+				Region result = await regionService.GetRegion(region.ID);
+
+				// Assert
+				Assert.Equal(result, region);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get single Retailer by calling RetailerService's GetRetailer() method
+		/// </summary>
+		[Fact]
+		public async void GetRetailer_CanGetSingleRetailer()
+		{
+			DbContextOptions<RimRockApiDbContext> options = new DbContextOptionsBuilder<RimRockApiDbContext>().UseInMemoryDatabase("CanGetSingleRetailer").Options;
+
+			using (RimRockApiDbContext context = new RimRockApiDbContext(options))
+			{
+				// Arrange
+				Retailer retailer = new Retailer();
+				retailer.ID = 1;
+				retailer.Name = "Backcountry Essentials";
+
+				// Act
+				RetailerService retailerService = new RetailerService(context);
+				await context.Retailers.AddAsync(retailer);
+				await context.SaveChangesAsync();
+
+				Retailer result = await retailerService.GetRetailer(retailer.ID);
+
+				// Assert
+				Assert.Equal(result, retailer);
+			};
+		}
+
+		/// <summary>
+		/// Tests whether can get single Location by calling LocationService's GetLocation() method
+		/// </summary>
 		[Fact]
 		public async void GetLocation_CanGetSingleLocation()
 		{
@@ -407,8 +464,6 @@ namespace XUnit_RimRockUnitTests
 				await context.SaveChangesAsync();
 
 				Location result = await locationService.GetLocation(location.ID);
-
-				//var result = context.Locations.FirstOrDefault(loc => loc.Cost == location.Cost);
 
 				// Assert
 				Assert.Equal(result, location);
