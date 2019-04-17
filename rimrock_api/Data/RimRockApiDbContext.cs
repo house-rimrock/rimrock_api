@@ -21,8 +21,18 @@ namespace rimrock_api.Data
 				{
 					ID = 1,
 					Name = "Greater Seattle",
-				}	
-			);
+				},
+                new Region
+                {
+                    ID = 2,
+                    Name = "Eastern Washington",
+                },
+                new Region
+                {
+                    ID = 3,
+                    Name = "Oklahoma",
+                }
+            );
 
 			modelBuilder.Entity<Location>().HasData(
 				new Location
