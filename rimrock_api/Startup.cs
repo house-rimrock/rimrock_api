@@ -84,7 +84,7 @@ namespace rimrock_api
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Visit https://rimrockapi.azurewebsites.net/swagger for interactive endpoint documentation.");
             });
         }
     }
