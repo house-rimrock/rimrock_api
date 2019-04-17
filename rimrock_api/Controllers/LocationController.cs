@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rimrock_api.Data;
 using rimrock_api.Models;
+using rimrock_api.Models.Interfaces;
 
 namespace rimrock_api.Controllers
 {
@@ -15,28 +16,35 @@ namespace rimrock_api.Controllers
     public class LocationController : ControllerBase
     {
 
-		private readonly RimRockApiDbContext _context;
+		private readonly ILocation _location;
 
-		public LocationController(RimRockApiDbContext context)
+		public LocationController(ILocation location)
 		{
-			_context = context;
+			_location = location;
 		}
 
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Location>>> Get()
-		{
-			return await _context.Locations.ToListAsync();
-		}
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            List<Location> locations = await _location.GetLocations();
+            return Ok(locations);
+        }
 
-		[HttpGet("{id}")]
-		public async Task<ActionResult<Location>> Get(int id)
-		{
-			Location location = await _context.Locations.FirstOrDefaultAsync(r => r.ID == id);
-			if (location == null)
-			{
-				return NotFound();
-			}
-			return Ok(location);
-		}
-	}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id < 1)
+            {
+                return NotFound();
+            }
+
+            var location = await _location.GetLocation(id);
+
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return Ok(location);
+        }
+    }
 }
