@@ -52,7 +52,7 @@ namespace rimrock_api.Data
 				new Location
 				{
 					ID = 3,
-					Name = "Peakies",
+					Name = "Jerall mountains",
 					Cost = "$$$$",
 					RegionID = 1
 				},
@@ -69,8 +69,57 @@ namespace rimrock_api.Data
 					Name = "Little Rocks",
 					Cost = "$",
 					RegionID = 1
-				}
-			);
+				},
+                new Location
+                {
+                    ID = 6,
+                    Name = "Cliff Barz",
+                    Cost = "$$$$$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 7,
+                    Name = "Short Shore",
+                    Cost = "$$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 8,
+                    Name = "The Lookout",
+                    Cost = "$$$$$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 9,
+                    Name = "Medium Rock",
+                    Cost = "$$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 10,
+                    Name = "Super Mountain",
+                    Cost = "$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 11,
+                    Name = "Super Mountain",
+                    Cost = "$",
+                    RegionID = 2
+                },
+                new Location
+                {
+                    ID = 12,
+                    Name = "Boulder Mountain",
+                    Cost = "$",
+                    RegionID = 3
+                }
+            );
 
 			modelBuilder.Entity<Retailer>().HasData(
 				new Retailer
@@ -93,8 +142,36 @@ namespace rimrock_api.Data
 					Name = "Backcountry Essentials",
 					Specialty = "Climbing",
 					RegionID = 1
-				}
-			);
+				},
+                new Retailer
+                {
+                    ID = 4,
+                    Name = "Batman's Garage",
+                    Specialty = "Climbing",
+                    RegionID = 2
+                },
+                new Retailer
+                {
+                    ID = 5,
+                    Name = "Plank's Ski Shop",
+                    Specialty = "Skiing",
+                    RegionID = 2
+                },
+                new Retailer
+                {
+                    ID = 6,
+                    Name = "Rocky Bubbaloo",
+                    Specialty = "Climbing",
+                    RegionID = 2
+                },
+                new Retailer
+                {
+                    ID = 7,
+                    Name = "Boulders are Mountains Here",
+                    Specialty = "Climbing",
+                    RegionID = 3
+                }
+            );
 		}
 		
         public DbSet<Location> Locations { get; set; }

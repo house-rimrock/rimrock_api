@@ -9,8 +9,8 @@ using rimrock_api.Data;
 namespace rimrock_api.Migrations
 {
     [DbContext(typeof(RimRockApiDbContext))]
-    [Migration("20190416185611_initial")]
-    partial class initial
+    [Migration("20190417203350_full-seed")]
+    partial class fullseed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace rimrock_api.Migrations
                         {
                             ID = 3,
                             Cost = "$$$$",
-                            Name = "Peakies",
+                            Name = "Jerall mountains",
                             RegionID = 1
                         },
                         new
@@ -71,6 +71,55 @@ namespace rimrock_api.Migrations
                             Cost = "$",
                             Name = "Little Rocks",
                             RegionID = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Cost = "$$$$$",
+                            Name = "Cliff Barz",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Cost = "$$",
+                            Name = "Short Shore",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Cost = "$$$$$",
+                            Name = "The Lookout",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Cost = "$$",
+                            Name = "Medium Rock",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Cost = "$",
+                            Name = "Super Mountain",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 11,
+                            Cost = "$",
+                            Name = "Super Mountain",
+                            RegionID = 2
+                        },
+                        new
+                        {
+                            ID = 12,
+                            Cost = "$",
+                            Name = "Boulder Mountain",
+                            RegionID = 3
                         });
                 });
 
@@ -91,6 +140,16 @@ namespace rimrock_api.Migrations
                         {
                             ID = 1,
                             Name = "Greater Seattle"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Eastern Washington"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Oklahoma"
                         });
                 });
 
@@ -130,6 +189,34 @@ namespace rimrock_api.Migrations
                             ID = 3,
                             Name = "Backcountry Essentials",
                             RegionID = 1,
+                            Specialty = "Climbing"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Batman's Garage",
+                            RegionID = 2,
+                            Specialty = "Climbing"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Plank's Ski Shop",
+                            RegionID = 2,
+                            Specialty = "Skiing"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "Rocky Bubbaloo",
+                            RegionID = 2,
+                            Specialty = "Climbing"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Name = "Boulders are Mountains Here",
+                            RegionID = 3,
                             Specialty = "Climbing"
                         });
                 });
