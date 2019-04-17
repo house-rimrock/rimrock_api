@@ -32,15 +32,12 @@ Members:
 ## ENDPOINTS AND DATA
 
 
-> for interactive Swagger documentation of API endpoints visit:
->
-> https://rimrockapi.azurewebsites.net/swagger
+**for interactive Swagger documentation of API endpoints visit:**
+
+**https://rimrockapi.azurewebsites.net/swagger**
 
 
-```
-NOTE: for use with local deployment, replace base address "https://rimrockapi.azurewebsites.net" with local host address; all endpoints will return the same as below. In Startup, the environment is read for production status and reads from 
-```
-### WEB:
+
 ```C#
 https://rimrockapi.azurewebsites.net/api/location/
 
