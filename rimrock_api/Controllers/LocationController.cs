@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using rimrock_api.Data;
 using rimrock_api.Models;
 using rimrock_api.Models.Interfaces;
 
@@ -15,14 +10,21 @@ namespace rimrock_api.Controllers
     [ApiController]
     public class LocationController : ControllerBase
     {
-
 		private readonly ILocation _location;
 
+        /// <summary>
+        ///     Sets Interface instance for CRUD access
+        /// </summary>
+        /// <param name="location">ILocation location</param>
 		public LocationController(ILocation location)
 		{
 			_location = location;
 		}
 
+        /// <summary>
+        ///     Route for getting all loations
+        /// </summary>
+        /// <returns>locations action result</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -30,6 +32,11 @@ namespace rimrock_api.Controllers
             return Ok(locations);
         }
 
+        /// <summary>
+        ///     Route for getting one location by id
+        /// </summary>
+        /// <param name="id">int id</param>
+        /// <returns>Location of id</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

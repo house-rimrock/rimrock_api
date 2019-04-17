@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace rimrock_api.Models
+﻿namespace rimrock_api.Models
 {
+    // https://github.com/house-rimrock/rimrock/blob/master/assets/db-schema-rimrock.png
     public class Region
     {
         public int ID { get; set; }

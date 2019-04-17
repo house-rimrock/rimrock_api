@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +8,11 @@ using rimrock_api.Data;
 using rimrock_api.Models.Interfaces;
 using rimrock_api.Models.Services;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerUI;
-
 
 namespace rimrock_api
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
 
         public IHostingEnvironment Environment { get; }
@@ -27,6 +20,7 @@ namespace rimrock_api
         public Startup(IHostingEnvironment environment)
         {
             Environment = environment;
+            // Brings in applicaiton configuration properties as key value pairs from external secrets file
             var builder = new ConfigurationBuilder().AddEnvironmentVariables();
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
@@ -38,14 +32,15 @@ namespace rimrock_api
         {
             services.AddMvc();
 
+            // Reads environment for development vs production and assigns respective connection string.
             string connectionString = Environment.IsDevelopment()
                                             ? Configuration["ConnectionStrings:DefaultConnection"]
                                             : Configuration["ConnectionStrings:ProductionConnection"];
 
-
-
 			services.AddDbContext<RimRockApiDbContext>(options =>
 			options.UseSqlServer(connectionString));
+
+            // Adds a scoped service of the type specified to the service specified
             services.AddScoped<IRetailer, RetailerService>();
             services.AddScoped<ILocation, LocationService>();
             services.AddScoped<IRegion, RegionService>();
@@ -58,7 +53,6 @@ namespace rimrock_api
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
         }
-
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -75,8 +69,8 @@ namespace rimrock_api
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // Documentation generation
             app.UseSwagger();
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
