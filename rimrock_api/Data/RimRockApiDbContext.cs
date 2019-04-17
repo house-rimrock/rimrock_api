@@ -173,6 +173,5 @@ namespace rimrock_api.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
         public DbSet<Region> Regions { get; set; }
-
     }
 }
