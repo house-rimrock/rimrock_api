@@ -107,3 +107,7 @@ Returns: class Region by id prop:
 1.0.0: 15APR2019 Deployed; data avaliable from browser.
 
 1.1.0 16APR2019 README overhaul
+
+1.2.0 17APR2019 Swagger docs
+
+                seed data expansion
