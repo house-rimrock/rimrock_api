@@ -31,7 +31,7 @@ namespace rimrock_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromQuery]int id)
         {
             if(id < 1)
             {

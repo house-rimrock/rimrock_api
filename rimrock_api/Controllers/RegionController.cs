@@ -31,7 +31,7 @@ namespace rimrock_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromQuery]int id)
         {
             if (id < 1)
             {
@@ -45,6 +45,6 @@ namespace rimrock_api.Controllers
                 return NotFound();
             }
             return Ok(region);
-        }
+        } 
     }
 }
