@@ -32,7 +32,7 @@ namespace rimrock_api
         {
             services.AddMvc();
 
-            // Reads environment for development vs production and assigns respective connection string
+            // Reads environment for development vs production and assigns respective connection string.
             string connectionString = Environment.IsDevelopment()
                                             ? Configuration["ConnectionStrings:DefaultConnection"]
                                             : Configuration["ConnectionStrings:ProductionConnection"];
