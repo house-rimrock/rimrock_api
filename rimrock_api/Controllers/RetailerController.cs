@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using rimrock_api.Models;
-using rimrock_api.Data;
 using rimrock_api.Models.Interfaces;
 
 namespace rimrock_api.Controllers
@@ -15,14 +10,21 @@ namespace rimrock_api.Controllers
     [ApiController]
     public class RetailerController : ControllerBase
     {
-
 		private readonly IRetailer _retailers;
 
+        /// <summary>
+        ///     Sets Interface instance for CRUD access
+        /// </summary>
+        /// <param name="location">IRetailer retailers</param>
 		public RetailerController(IRetailer retailers)
 		{
             _retailers = retailers;
 		}
 
+        /// <summary>
+        ///     Route for getting all retailers
+        /// </summary>
+        /// <returns>retailer action result</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -30,6 +32,11 @@ namespace rimrock_api.Controllers
             return Ok(retailers);
         }
 
+        /// <summary>
+        ///     Route for getting one retailer by id
+        /// </summary>
+        /// <param name="id">int id</param>
+        /// <returns>Retailer of id</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
