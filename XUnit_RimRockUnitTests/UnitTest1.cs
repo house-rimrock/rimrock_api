@@ -5,6 +5,8 @@ using System.Linq;
 using Xunit;
 using System.Collections.Generic;
 using rimrock_api.Models.Services;
+using System.Net.Http;
+using System;
 
 namespace XUnit_RimRockUnitTests
 {
@@ -567,5 +569,59 @@ namespace XUnit_RimRockUnitTests
 				Assert.Equal(list[1], location2);
 			};
 		}
-	}
+
+        [Fact]
+        public async void RouteLocation()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("location/1");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async void RouteLocations()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("location/");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async void RouteRegion()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("region/1");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async void RouteRegions()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("region/");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async void RouteRetailer()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("retailer/1");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async void RouteRetailers()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
+            HttpResponseMessage response = await client.GetAsync("retailer/");
+            Assert.True(response.IsSuccessStatusCode);
+        }
+    }
 }
