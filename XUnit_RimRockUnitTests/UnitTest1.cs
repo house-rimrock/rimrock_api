@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using rimrock_api.Models.Services;
 using System.Net.Http;
 using System;
+using System.Net;
 
 namespace XUnit_RimRockUnitTests
 {
@@ -574,54 +575,72 @@ namespace XUnit_RimRockUnitTests
         public async void RouteLocation()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("location/1");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/location/1");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            string resp = await response.Content.ReadAsStringAsync();
+            Assert.Equal("{\"id\":1,\"name\":\"Cliff Creek\",\"cost\":\"$$$$$\",\"regionID\":1}", resp);
         }
 
         [Fact]
         public async void RouteLocations()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("location/");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/location/");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]
         public async void RouteRegion()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("region/1");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/region/1");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            string resp = await response.Content.ReadAsStringAsync();
+            Assert.Equal("{\"id\":1,\"name\":\"Greater Seattle\"}", resp);
         }
+
+        // 
 
         [Fact]
         public async void RouteRegions()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("region/");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/region/");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]
         public async void RouteRetailer()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("retailer/1");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/retailer/1");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            string resp = await response.Content.ReadAsStringAsync();
+            Assert.Equal("{\"id\":1,\"name\":\"Second Ascents\",\"specialty\":\"Climbing\",\"regionID\":1}", resp);
         }
 
         [Fact]
         public async void RouteRetailers()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/");
-            HttpResponseMessage response = await client.GetAsync("retailer/");
-            Assert.True(response.IsSuccessStatusCode);
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/region/");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        /// <summary>
+        ///     An incorrect endpoint by the client returns a URL with endpoint documentation.
+        /// </summary>
+        [Fact]
+        public async void RouteExpectedFailure()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/dinosaurs/");
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+            string resp = await response.Content.ReadAsStringAsync();
+            Assert.Equal("Visit https://rimrockapi.azurewebsites.net/swagger for interactive endpoint documentation.", resp);
         }
     }
 }
