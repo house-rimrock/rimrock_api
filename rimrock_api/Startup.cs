@@ -34,7 +34,7 @@ namespace rimrock_api
 
             // Reads environment for development vs production and assigns respective connection string.
             string connectionString = Environment.IsDevelopment()
-                                            ? Configuration["ConnectionStrings:DefaultConnection"]
+                                            ? Configuration["ConnectionStrings:ProductionConnection"]
                                             : Configuration["ConnectionStrings:ProductionConnection"];
 
 			services.AddDbContext<RimRockApiDbContext>(options =>

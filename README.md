@@ -1,7 +1,7 @@
 # RIMROCK API
 
 ```
-"An API in support of project Rimrock, a website that allows you to lookup climbing locations and gear retailers
+"An API in support of project Rimrock, a website that allows you to lookup climbing locations and gear retailers."
 ```
 
 Project Midterm, one week sprint.
@@ -23,7 +23,9 @@ Members:
 
 ## DB SCHEMA
 
->NOTE: Database schema is split between API and MVC [go to mvc git >>](https://github.com/house-rimrock/rimrock)
+**Note: Database schema is split between API and MVC**
+
+**[go to mvc git >>](https://github.com/house-rimrock/rimrock)**
 
 ![DBSchema](https://github.com/house-rimrock/rimrock/blob/master/assets/db-schema-rimrock.png)
 
@@ -32,7 +34,7 @@ Members:
 ## ENDPOINTS AND DATA
 
 
-**for interactive Swagger documentation of API endpoints visit:**
+**For interactive Swagger documentation of API endpoints visit:**
 
 **https://rimrockapi.azurewebsites.net/swagger**
 
@@ -108,6 +110,7 @@ Returns: class Region by id prop:
 
 1.1.0 16APR2019 README overhaul
 
-1.2.0 17APR2019 Swagger docs
+1.2.0 17APR2019 Swagger docs, seed data expansion
 
-                seed data expansion
+1.3.0 18APR2019 Tests complete
+

@@ -12,17 +12,23 @@ namespace rimrock_api.Controllers
     {
 		private readonly ILocation _location;
 
-        /// <summary>
-        ///     Sets Interface instance for CRUD access
-        /// </summary>
-        /// <param name="location">ILocation location</param>
+		/// <summary>
+		///     This function gets a specific locations information from the DB
+		/// </summary>
+		/// <param name="id">Target Location</param>
+		/// <returns>Information about a specifically requested location</returns>
+
+		/// <summary>
+		///     Sets Interface instance for CRUD access
+		/// </summary>
+		/// <param name="location">ILocation location</param>
 		public LocationController(ILocation location)
 		{
 			_location = location;
 		}
 
         /// <summary>
-        ///     Route for getting all loations
+        ///     Route for getting all locations
         /// </summary>
         /// <returns>locations action result</returns>
         [HttpGet]
@@ -33,10 +39,10 @@ namespace rimrock_api.Controllers
         }
 
         /// <summary>
-        ///     Route for getting one location by id
+        ///     This function gets a specific locations information from the DB
         /// </summary>
-        /// <param name="id">int id</param>
-        /// <returns>Location of id</returns>
+        /// <param name="id">Target Location</param>
+        /// <returns>Information about a specifically requested location</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

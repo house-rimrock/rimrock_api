@@ -9,7 +9,7 @@ using rimrock_api.Data;
 namespace rimrock_api.Migrations
 {
     [DbContext(typeof(RimRockApiDbContext))]
-    [Migration("20190417203350_full-seed")]
+    [Migration("20190417223134_full-seed")]
     partial class fullseed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
