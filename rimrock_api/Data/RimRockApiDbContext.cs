@@ -557,7 +557,7 @@ namespace rimrock_api.Data
 				{
 					ID = 3,
 					Name = "Backcountry Essentials",
-					Specialty = "Climbing, Biking",
+					Specialty = "Climbing, Skiing",
 					RegionID = 1
 				},
                 new Retailer
@@ -689,7 +689,7 @@ namespace rimrock_api.Data
 				{
 					ID = 21,
 					Name = "Wildernest Outdoor Store",
-					Specialty = "",
+					Specialty = "Hiking, Climbing",
 					RegionID = 3
 				},
 
