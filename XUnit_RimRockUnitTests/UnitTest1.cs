@@ -578,7 +578,7 @@ namespace XUnit_RimRockUnitTests
             client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/location/1");
             HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
             string resp = await response.Content.ReadAsStringAsync();
-            Assert.Equal("{\"id\":1,\"name\":\"Cliff Creek\",\"cost\":\"$$$$$\",\"regionID\":1}", resp);
+            Assert.Equal("{\"id\":1,\"name\":\"Black Peak\",\"cost\":\"$\",\"regionID\":1}", resp);
         }
 
         [Fact]
@@ -597,7 +597,7 @@ namespace XUnit_RimRockUnitTests
             client.BaseAddress = new Uri("https://rimrockapi.azurewebsites.net/api/region/1");
             HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
             string resp = await response.Content.ReadAsStringAsync();
-            Assert.Equal("{\"id\":1,\"name\":\"Greater Seattle\"}", resp);
+            Assert.Equal("{\"id\":1,\"name\":\"North Cascades\"}", resp);
         }
 
         // 
