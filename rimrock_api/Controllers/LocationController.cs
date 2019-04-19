@@ -33,10 +33,10 @@ namespace rimrock_api.Controllers
         }
 
         /// <summary>
-        ///     Route for getting one location by id
+        ///     This function gets a specific locations information from the DB
         /// </summary>
-        /// <param name="id">int id</param>
-        /// <returns>Location of id</returns>
+        /// <param name="id">Target Location</param>
+        /// <returns>Information about a specifically requested location</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

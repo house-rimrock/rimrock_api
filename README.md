@@ -113,3 +113,4 @@ Returns: class Region by id prop:
 1.2.0 17APR2019 Swagger docs, seed data expansion
 
 1.3.0 18APR2019 Tests complete
+
