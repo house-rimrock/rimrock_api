@@ -1,10 +1,10 @@
 # RIMROCK API
 
 ```
-"An API in support of project Rimrock, a website that allows you to lookup climbing locations and gear retailers."
+"An API supporting Rimrock, a website that allows you to look up climbing locations and gear retailers."
 ```
 
-Project Midterm, one week sprint.
+Code 401 midterm project, one week sprint.
 
 Members:
 
