@@ -4,9 +4,9 @@
 "An API supporting Rimrock, a website that allows you to look up climbing locations and gear retailers."
 ```
 
-Code 401 midterm project, one week sprint.
+Collaborative project, one week sprint.
 
-Members:
+Team Members:
 
 [Dan](https://github.com/daniellogerstedt),
 [Ben](https://github.com/BenSTay),
